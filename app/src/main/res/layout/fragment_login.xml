@@ -9,79 +9,75 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="E-mail"
         android:textColor="@color/white"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email@email.com"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edit"
+        android:padding="14dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Senha"
+        android:textColor="@color/white"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="email@gmail.com"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edit"
-            android:padding="14dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="******"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edit"
+        android:padding="14dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        app:backgroundTint="@null"
+        android:layout_marginTop="16dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/color_defalt"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left
+"
+        android:paddingVertical="8dp"
+        android:text="Criar conta"
+        android:textColor="@color/white" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:text="Senha"
-            android:textColor="@color/white"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="******"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edit"
-            android:padding="14dp"/>
-        
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
-            android:backgroundTint="@null"
-            android:layout_marginTop="16dp"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textColor="@color/color_defalt"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="Criar conta"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintBaseline_toTopOf="parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="Recuperar conta"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintBaseline_toTopOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:paddingVertical="8dp"
+            android:layout_gravity="right"
+            android:text="Recuperar conta"
+            android:textColor="@color/white" />
 
     </LinearLayout>
+
 
 </ScrollView>
