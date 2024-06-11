@@ -2,9 +2,10 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Task" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimaryVariant">@color/color_defalt</item>
         <item name="android:windowBackground">@color/color_defalt</item>
+        <!-- Ensure windowActionBar and windowNoTitle are set correctly -->
+
     </style>
 
     <style name="Theme.Task" parent="Base.Theme.Task" />

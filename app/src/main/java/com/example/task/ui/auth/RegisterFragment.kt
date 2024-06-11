@@ -10,14 +10,9 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
 import com.example.task.databinding.FragmentRegisterBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-
-// TODO: Rename parameter arguments, choose names that match
 
 class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
@@ -27,35 +22,32 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         initClicks()
     }
 
     private fun initClicks(){
-        binding.btnRegister.setOnClickListener{ValidateData()}
+        binding.btnRegister.setOnClickListener { validateData() }
     }
-    private fun ValidateData(){
+
+    private fun validateData() {
         val email = binding.edtEmail.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
 
         if (email.isNotEmpty()) {
-            if (password.isNotEmpty()){
+            if (password.isNotEmpty()) {
                 binding.progressbar.isVisible = true
-            }
-            else {
+                registerUser(email, password)
+            } else {
                 Toast.makeText(requireContext(), "Informe sua senha.", Toast.LENGTH_SHORT).show()
-
             }
-        }
-        else {
+        } else {
             Toast.makeText(requireContext(), "Informe seu email.", Toast.LENGTH_SHORT).show()
         }
     }
@@ -63,18 +55,17 @@ class RegisterFragment : Fragment() {
     private fun registerUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
+                binding.progressbar.isVisible = false
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
-
                 } else {
-                    binding.progressbar.isVisible = false
-
+                    Toast.makeText(requireContext(), "Falha ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
-    override fun onDestroy() {
-        super.onDestroy()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
-
 }
