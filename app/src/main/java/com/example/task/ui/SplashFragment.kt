@@ -10,8 +10,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
 import com.example.task.databinding.FragmentSplashBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
-// TODO: Rename parameter arguments, choose names that match
+private var _binding: FragmentSplashBinding? = null
+private val binding get() = _binding!!
+private  lateinit var auth: FirebaseAuth
 
 class SplashFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -35,7 +40,12 @@ class SplashFragment : Fragment() {
 
     //função para checar se o usuario esta autenticado ou nao
     private fun checkAuth(){
-        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        if (auth.currentUser==null){
+            findNavController().navigate(R.id.action_splashFragment_to_authetication)
+        }else{
+            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+        }
+
 
     }
 
