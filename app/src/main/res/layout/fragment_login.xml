@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="E-mail"
+        android:text="@string/text_email"
         android:textColor="@color/white"/>
     <EditText
         android:id="@+id/edtEmail"
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Senha"
+        android:text="@string/text_password"
         android:textColor="@color/white"/>
 
     <EditText
@@ -54,7 +54,7 @@
         android:background="@drawable/bg_button"
         app:backgroundTint="@null"
         android:layout_marginTop="16dp"
-        android:text="Login"
+        android:text="@string/text_btn_login_fragment"
         android:textAllCaps="false"
         android:textColor="@color/color_defalt"/>
 
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:paddingVertical="8dp"
-        android:text="Criar conta"
+        android:text="@string/text_register_account"
         android:textColor="@color/white" />
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="8dp"
             android:layout_gravity="right"
-            android:text="Recuperar conta"
+            android:text="@string/text_recover_login_fragment"
             android:textColor="@color/white" />
 
 

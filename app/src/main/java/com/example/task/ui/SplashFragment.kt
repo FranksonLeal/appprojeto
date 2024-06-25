@@ -10,49 +10,38 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
 import com.example.task.databinding.FragmentSplashBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-
-private var _binding: FragmentSplashBinding? = null
-private val binding get() = _binding!!
-private  lateinit var auth: FirebaseAuth
 
 class SplashFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var _binding: FragmentSplashBinding? = null
-    private  val binding get() = _binding!!
 
+    private var _binding: FragmentSplashBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()  // Inicializa o FirebaseAuth aqui
         Handler(Looper.getMainLooper()).postDelayed(this::checkAuth, 3000)
     }
 
-    //função para checar se o usuario esta autenticado ou nao
-    private fun checkAuth(){
-        if (auth.currentUser==null){
+    private fun checkAuth() {
+        if (auth.currentUser == null) {
             findNavController().navigate(R.id.action_splashFragment_to_authetication)
-        }else{
+        } else {
             findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
         }
-
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

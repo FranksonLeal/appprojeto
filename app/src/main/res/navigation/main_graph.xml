@@ -25,9 +25,16 @@
         android:id="@+id/homeFragment"
         android:name="com.example.task.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <navigation android:id="@+id/authetication"
-        app:startDestination="@id/registerFragment">
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_authetication"
+            app:destination="@id/authetication"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <navigation
+        android:id="@+id/authetication"
+        app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.example.task.ui.auth.RegisterFragment"
@@ -37,7 +44,7 @@
             android:id="@+id/loginFragment"
             android:name="com.example.task.ui.auth.LoginFragment"
             android:label="fragment_login"
-            tools:layout="@layout/fragment_login" >
+            tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_loginFragment_to_registerFragment"
                 app:destination="@id/registerFragment" />
@@ -54,6 +61,6 @@
             android:id="@+id/action_global_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </navigation>
 </navigation>
