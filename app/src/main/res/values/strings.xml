@@ -8,9 +8,7 @@
     <string name="text_btn_login_fragment">Login</string>
     <string name="text_recover_login_fragment">Recuperar conta</string>
     <string name="text_btn_recover_account_fragment">Enviar</string>
-
-
-
+    <string name="error_generic">Erro genérico.</string>
 
 
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
@@ -18,8 +16,8 @@
     <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
     <string name="email_in_use_register_fragment">Este e-mail ja está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
-    
-    
+
+
     <string name="text_title_form_task_fragment">Nova tarefa</string>
     <string name="text_task_form_task_fragment">Tarefa</string>
     <string name="text_status_form_task_fragment">Status</string>

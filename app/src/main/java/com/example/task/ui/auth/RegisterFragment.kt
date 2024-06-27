@@ -1,7 +1,6 @@
 package com.example.task.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,14 +60,9 @@ class RegisterFragment : Fragment() {
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
-
-                    Toast.makeText(
-                        requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    binding.progressbar.isVisible = false
+                    val errorMessage = task.exception?.message ?: ""
+                    val errorCode = FirebaseHelper().validateError(errorMessage)
+                    Toast.makeText(requireContext(), getString(errorCode), Toast.LENGTH_SHORT).show()
                 }
             }
     }

@@ -82,7 +82,7 @@ class LoginFragment : Fragment() {
                 }else{
                     Toast.makeText(
                         requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
+                        FirebaseHelper().validateError(task.exception?.message ?: ""),
                         Toast.LENGTH_SHORT
                     ).show()
                     binding.progressbar.isVisible = false
