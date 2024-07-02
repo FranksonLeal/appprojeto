@@ -5,56 +5,140 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.example.task.R
+import com.example.task.databinding.FragmentFormTaskBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FormTaskFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FormTaskFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentFormTaskBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var task: Task
+    private var newTask: Boolean = true
+    private var statusTask: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_form_task, container, false)
+    ): View {
+        _binding = FragmentFormTaskBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FormTaskFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FormTaskFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
+
+    }
+
+    private fun initListeners() {
+        binding.btnSave.setOnClickListener(){ validateTask()}
+        binding.radioGroup.setOnCheckedChangeListener{ _, id ->
+            statusTask = when(id){
+                R.id.rbTodo -> 0
+                R.id.rbDoing -> 1
+                else -> 2
+            }
+        }
+    }
+
+    private fun validateTask() {
+        newTask = false
+        statusTask = task.status
+        binding.textToolbar.text = getString(R.string.text_editing_task_form_task_fragment)
+
+        binding.edtDescription.setText(task.description)
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.radioGroup.check(
+            when (task.status) {
+                0 -> {
+                    R.id.rbTodo
+                }
+                1 -> {
+                    R.id.rbDoing
+                }
+                else -> {
+                    R.id.rbDone
                 }
             }
+        )
     }
+
+    private fun initListeners() {
+        binding.btnSave.setOnClickListener { validateData() }
+
+        binding.radioGroup.setOnCheckedChangeListener { _, id ->
+            statusTask = when (id) {
+                R.id.rbTodo -> 0
+                R.id.rbDoing -> 1
+                else -> 2
+            }
+        }
+    }
+
+    private fun validateData() {
+        val description = binding.edtDescription.text.toString().trim()
+
+        if (description.isNotEmpty()) {
+
+            hideKeyboard()
+
+            binding.progressBar.isVisible = true
+
+            if (newTask) task = Task()
+            task.description = description
+            task.status = statusTask
+
+            saveTask()
+        } else {
+            showBottomSheet(message = R.string.text_description_empty_form_task_fragment)
+        }
+    }
+
+    private fun saveTask() {
+        FirebaseHelper
+            .getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .setValue(task)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (newTask) { // Nova tarefa
+                        findNavController().popBackStack()
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_save_task_sucess_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else { // Editando tarefa
+                        binding.progressBar.isVisible = false
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_update_task_sucess_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), R.string.text_erro_save_task_form_task_fragment, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }.addOnFailureListener {
+                binding.progressBar.isVisible = false
+                Toast.makeText(requireContext(), R.string.text_erro_save_task_form_task_fragment, Toast.LENGTH_SHORT)
+                    .show()
+            }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

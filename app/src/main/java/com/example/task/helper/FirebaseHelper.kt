@@ -5,7 +5,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class FirebaseHelper {
-    fun getDatabase() = FirebaseDatabase.getInstance().reference
+    companion object {
+        fun getDatabase() = FirebaseDatabase.getInstance().reference
+    }
+
     private fun getAuth() = FirebaseAuth.getInstance()
     fun getIdUser() = getAuth().uid
 
@@ -31,5 +34,3 @@ class FirebaseHelper {
         }
     }
 }
-
-
