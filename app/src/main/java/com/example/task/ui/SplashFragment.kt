@@ -13,7 +13,6 @@ import com.example.task.databinding.FragmentSplashBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashFragment : Fragment() {
-
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
@@ -22,16 +21,24 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = FirebaseAuth.getInstance()  // Inicializa o FirebaseAuth aqui
-        Handler(Looper.getMainLooper()).postDelayed(this::checkAuth, 3000)
+
+        // Inicialize a variável auth aqui
+        auth = FirebaseAuth.getInstance()
+
+        // Verifique a autenticação após um atraso
+        Handler(Looper.getMainLooper()).postDelayed({
+            checkAuth()
+        }, 3000)
     }
 
+    // Função para checar se o usuário está autenticado ou não
     private fun checkAuth() {
         if (auth.currentUser == null) {
             findNavController().navigate(R.id.action_splashFragment_to_authetication)

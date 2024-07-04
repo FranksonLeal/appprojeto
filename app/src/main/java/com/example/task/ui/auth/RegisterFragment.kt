@@ -61,7 +61,7 @@ class RegisterFragment : Fragment() {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     val errorMessage = task.exception?.message ?: ""
-                    val errorCode = FirebaseHelper().validateError(errorMessage)
+                    val errorCode = FirebaseHelper.validError(errorMessage)
                     Toast.makeText(requireContext(), getString(errorCode), Toast.LENGTH_SHORT).show()
                 }
             }

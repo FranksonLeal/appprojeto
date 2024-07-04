@@ -14,7 +14,7 @@
             android:id="@+id/action_splashFragment_to_authetication"
             app:destination="@id/authetication"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -28,9 +28,10 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_authetication"
-            app:destination="@id/authetication"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/authetication" />
+        <action
+            android:id="@+id/action_homeFragment_to_formTaskFragment"
+            app:destination="@id/formTaskFragment" />
     </fragment>
     <navigation
         android:id="@+id/authetication"
@@ -63,4 +64,14 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </navigation>
+    <fragment
+        android:id="@+id/formTaskFragment"
+        android:name="com.example.task.ui.FormTaskFragment"
+        android:label="fragment_form_task"
+        tools:layout="@layout/fragment_form_task" >
+        <argument
+            android:name="task"
+            app:argType="com.example.task.model.Task"
+            app:nullable="true" />
+    </fragment>
 </navigation>

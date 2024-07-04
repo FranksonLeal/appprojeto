@@ -57,7 +57,7 @@ class RecoverAccountFragment : Fragment() {
                     Toast.makeText(requireContext(), "Pronto, acabamos de enviar um link para o seu email.", Toast.LENGTH_SHORT).show()
                 } else {
                     val errorMessage = task.exception?.message ?: ""
-                    val errorCode = FirebaseHelper().validateError(errorMessage)
+                    val errorCode = FirebaseHelper.validError(errorMessage)
                     Toast.makeText(requireContext(), getString(errorCode), Toast.LENGTH_SHORT).show()
                 }
                 binding.progressbar.isVisible = false
