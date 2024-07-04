@@ -56,8 +56,10 @@
         android:backgroundTint="@color/white"
         app:tint="@color/color_defalt"
         android:src="@drawable/ic_add"
+        android:contentDescription="a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

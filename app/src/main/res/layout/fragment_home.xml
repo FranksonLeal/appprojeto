@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@color/color_defalt"
         android:elevation="0dp"
+        android:contentDescription="a"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ibLogout"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,15 +44,18 @@
         app:tabTextAppearance="@style/CustomTabLayout"
         app:tabTextColor="@color/white" />
 
+
     <ImageButton
         android:id="@+id/ibLogout"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:paddingHorizontal="8dp"
+        android:padding="16dp"
         android:src="@drawable/ic_logout"
+        android:contentDescription="a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
