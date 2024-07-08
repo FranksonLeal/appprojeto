@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.task.ui.SplashFragment"
-        android:label="fragment_splash"
+
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_authetication"
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.task.ui.HomeFragment"
-        android:label="fragment_home"
+
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_authetication"
@@ -39,12 +39,12 @@
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.example.task.ui.auth.RegisterFragment"
-            android:label="fragment_register"
+
             tools:layout="@layout/fragment_register" />
         <fragment
             android:id="@+id/loginFragment"
             android:name="com.example.task.ui.auth.LoginFragment"
-            android:label="fragment_login"
+
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_loginFragment_to_registerFragment"
@@ -56,7 +56,7 @@
         <fragment
             android:id="@+id/recoverAccountFragment"
             android:name="com.example.task.ui.auth.RecoverAccountFragment"
-            android:label="fragment_recover_account"
+
             tools:layout="@layout/fragment_recover_account" />
         <action
             android:id="@+id/action_global_homeFragment"
@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/formTaskFragment"
         android:name="com.example.task.ui.FormTaskFragment"
-        android:label="fragment_form_task"
+
         tools:layout="@layout/fragment_form_task" >
         <argument
             android:name="task"

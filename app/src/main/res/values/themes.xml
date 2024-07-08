@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Base.Theme.Task" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <!-- Customize your theme here -->
         <item name="colorPrimary">@color/color_defalt</item>
         <item name="colorPrimaryVariant">@color/color_defalt</item>
         <item name="android:windowBackground">@color/color_defalt</item>
-        <!-- Ensure windowActionBar and windowNoTitle are set correctly -->
-
+        <item name="android:windowNoTitle">true</item> <!-- Esconder o título da janela -->
+        <item name="android:windowActionBar">false</item> <!-- Desativar ActionBar -->
     </style>
 
     <style name="Theme.Task" parent="Base.Theme.Task" />

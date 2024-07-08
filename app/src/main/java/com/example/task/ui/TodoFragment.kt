@@ -50,39 +50,33 @@ class TodoFragment : Fragment() {
     }
 
     private fun getTasks() {
+        binding.progressbar.isVisible = true
         FirebaseHelper
             .getDatabase()
             .child("task")
             .child(FirebaseHelper.getIdUser() ?: "")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    taskList.clear()
                     if (snapshot.exists()) {
-
-                        taskList.clear()
                         for (snap in snapshot.children) {
                             val task = snap.getValue(Task::class.java) as Task
-
                             if (task.status == 0) taskList.add(task)
                         }
-                        binding.progressbar.isVisible = false
-                        binding.textInfo.text = ""
                         taskList.reverse()
                         initAdapter()
                     }
-
-                    else{
-                        binding.textInfo.text="Nenhuma tarefa cadastrada"
-                    }
-
+                    tasksEmpty()
                     binding.progressbar.isVisible = false
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Erro ao carregar tarefas", Toast.LENGTH_SHORT).show()
+                    binding.progressbar.isVisible = false
                 }
-
             })
     }
+
 
     private fun tasksEmpty() {
         binding.textInfo.text = if (taskList.isEmpty()) {
