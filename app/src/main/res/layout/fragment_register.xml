@@ -63,6 +63,7 @@
                 android:background="@drawable/bg_edit"
                 android:inputType="textEmailAddress"
                 android:hint="email@email.com"
+                android:textColor="@color/black"
                 android:padding="14dp"
                 android:textSize="14sp" />
 
@@ -82,6 +83,7 @@
                 android:background="@drawable/bg_edit"
                 android:inputType="textPassword"
                 android:hint="******"
+                android:textColor="@color/black"
                 android:padding="14dp"
                 android:textSize="14sp" />
 
