@@ -39,7 +39,6 @@ class TodoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initClicks()
-
         getTasks()
     }
 
@@ -77,7 +76,6 @@ class TodoFragment : Fragment() {
             })
     }
 
-
     private fun tasksEmpty() {
         binding.textInfo.text = if (taskList.isEmpty()) {
             getText(R.string.text_task_list_empty_todo_fragment)
@@ -100,14 +98,11 @@ class TodoFragment : Fragment() {
             TaskAdapter.SELECT_REMOVE -> {
                 deleteTask(task)
             }
-
             TaskAdapter.SELECT_EDIT -> {
-                val action = HomeFragmentDirections
-                    .actionHomeFragmentToFormTaskFragment(task)
+                val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
-
-            TaskAdapter.SELECT_NEXT ->{
+            TaskAdapter.SELECT_NEXT -> {
                 task.status = 1
                 updateTask(task)
             }
@@ -156,5 +151,4 @@ class TodoFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

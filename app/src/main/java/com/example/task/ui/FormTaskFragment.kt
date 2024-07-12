@@ -12,6 +12,7 @@ import com.example.task.R
 import com.example.task.databinding.FragmentFormTaskBinding
 import com.example.task.model.Task
 import com.example.task.helper.FirebaseHelper
+import com.google.android.material.radiobutton.MaterialRadioButton
 
 class FormTaskFragment : Fragment() {
 
@@ -32,13 +33,26 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
         initListeners()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun initListeners() {
         binding.btnSave.setOnClickListener { validateData() }
-        binding.radioGroup.setOnCheckedChangeListener { _, id ->
-            statusTask = when (id) {
+        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            for (i in 0 until group.childCount) {
+                val radioButton = group.getChildAt(i) as MaterialRadioButton
+                radioButton.setTextColor(resources.getColor(R.color.white, null))
+            }
+            val selectedRadioButton = group.findViewById<MaterialRadioButton>(checkedId)
+            selectedRadioButton.setTextColor(resources.getColor(R.color.selected_radio_button_color, null))
+            statusTask = when (checkedId) {
                 R.id.rbTodo -> 0
                 R.id.rbDoing -> 1
                 else -> 2

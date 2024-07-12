@@ -17,17 +17,17 @@ class TaskAdapter(
 ) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
     companion object {
-        val SELECT_BACK: Int = 1
-        val SELECT_REMOVE: Int = 2
-        val SELECT_EDIT: Int = 3
-        val SELECT_DETAILS: Int = 4
-        val SELECT_NEXT: Int = 5
+        const val SELECT_BACK: Int = 1
+        const val SELECT_REMOVE: Int = 2
+        const val SELECT_EDIT: Int = 3
+        const val SELECT_DETAILS: Int = 4
+        const val SELECT_NEXT: Int = 5
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
             ItemAdapterBinding.inflate(
-                LayoutInflater.from(parent.context),parent,false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }
@@ -79,5 +79,4 @@ class TaskAdapter(
 
     inner class MyViewHolder(val binding: ItemAdapterBinding) :
         RecyclerView.ViewHolder(binding.root)
-
 }
