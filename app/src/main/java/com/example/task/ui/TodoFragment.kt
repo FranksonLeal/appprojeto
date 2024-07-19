@@ -44,9 +44,11 @@ class TodoFragment : Fragment() {
 
     private fun initClicks() {
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(null)
+            findNavController().navigate(action)
         }
     }
+
 
     private fun getTasks() {
         binding.progressbar.isVisible = true
@@ -99,10 +101,11 @@ class TodoFragment : Fragment() {
                 deleteTask(task)
             }
             TaskAdapter.SELECT_EDIT -> {
-                // Passando a tarefa para o fragmento de formulário para edição
-                val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
+
             TaskAdapter.SELECT_NEXT -> {
                 task.status = 1
                 updateTask(task)

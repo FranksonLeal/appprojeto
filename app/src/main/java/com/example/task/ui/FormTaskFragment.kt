@@ -21,7 +21,6 @@ class FormTaskFragment : Fragment() {
 
     private lateinit var task: Task
     private var newTask: Boolean = true
-    private var statusTask: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +34,23 @@ class FormTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         initListeners()
+
+        // Verifica se estamos editando uma tarefa existente
+        val args = FormTaskFragmentArgs.fromBundle(requireArguments())
+        if (args.task != null) {
+            task = args.task!!
+            newTask = false
+            validateTask()
+        } else {
+            newTask = true
+            task = Task() // Inicializa uma nova tarefa vazia
+        }
+    }
+
+    private fun validateTask() {
+        binding.textToolbar.text = getString(R.string.text_editing_task_form_task_fragment)
+        binding.editDescription.setText(task.description)
+
     }
 
     private fun setupToolbar() {
@@ -43,10 +59,14 @@ class FormTaskFragment : Fragment() {
         }
     }
 
-
-
     private fun initListeners() {
         binding.btnSave.setOnClickListener { validateData() }
+    }
+
+    private fun populateFields() {
+        binding.editDescription.setText(task.description)
+
+        // Se necessário, configurar outros campos para edição
     }
 
     private fun validateData() {
@@ -55,11 +75,6 @@ class FormTaskFragment : Fragment() {
         if (description.isNotEmpty()) {
             hideKeyboard()
             binding.progressBar.isVisible = true
-
-            if (newTask) {
-                task = Task()
-                task.id = FirebaseHelper.getDatabase().child("task").push().key ?: ""
-            }
 
             task.description = description
 
@@ -70,30 +85,34 @@ class FormTaskFragment : Fragment() {
     }
 
     private fun saveTask() {
-        FirebaseHelper
-            .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
-            .child(task.id)
-            .setValue(task)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    if (newTask) { // Nova tarefa
+        if (newTask) {
+            task.id = FirebaseHelper.getDatabase()
+                .child("task")
+                .child(FirebaseHelper.getIdUser() ?: "")
+                .push().key ?: ""
+
+            FirebaseHelper.getDatabase()
+                .child("task")
+                .child(FirebaseHelper.getIdUser() ?: "")
+                .child(task.id)
+                .setValue(task)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         findNavController().popBackStack()
                         Toast.makeText(
                             requireContext(),
                             R.string.text_save_task_sucess_form_task_fragment,
                             Toast.LENGTH_SHORT
                         ).show()
-                    } else { // Editando tarefa
+                    } else {
                         binding.progressBar.isVisible = false
                         Toast.makeText(
                             requireContext(),
-                            R.string.text_update_task_sucess_form_task_fragment,
+                            R.string.text_erro_save_task_form_task_fragment,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                } else {
+                }.addOnFailureListener {
                     binding.progressBar.isVisible = false
                     Toast.makeText(
                         requireContext(),
@@ -101,24 +120,45 @@ class FormTaskFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }.addOnFailureListener {
-                binding.progressBar.isVisible = false
-                Toast.makeText(
-                    requireContext(),
-                    R.string.text_erro_save_task_form_task_fragment,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        } else {
+            FirebaseHelper.getDatabase()
+                .child("task")
+                .child(FirebaseHelper.getIdUser() ?: "")
+                .child(task.id ?: "")
+                .setValue(task)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        binding.progressBar.isVisible = false
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_update_task_sucess_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        binding.progressBar.isVisible = false
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_erro_save_task_form_task_fragment,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }.addOnFailureListener {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.text_erro_save_task_form_task_fragment,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
     }
 
-
-
     private fun hideKeyboard() {
-        // Implement hide keyboard functionality
+        // Implementar a funcionalidade de ocultar o teclado
     }
 
     private fun showBottomSheet(message: Int) {
-        // Implement show bottom sheet functionality
+        // Implementar a funcionalidade de exibir o bottom sheet
     }
 
     override fun onDestroyView() {
