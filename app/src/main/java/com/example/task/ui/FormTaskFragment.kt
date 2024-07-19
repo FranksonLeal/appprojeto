@@ -12,7 +12,7 @@ import com.example.task.R
 import com.example.task.databinding.FragmentFormTaskBinding
 import com.example.task.model.Task
 import com.example.task.helper.FirebaseHelper
-import com.google.android.material.radiobutton.MaterialRadioButton
+
 
 class FormTaskFragment : Fragment() {
 
@@ -43,40 +43,10 @@ class FormTaskFragment : Fragment() {
         }
     }
 
+
+
     private fun initListeners() {
         binding.btnSave.setOnClickListener { validateData() }
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            for (i in 0 until group.childCount) {
-                val radioButton = group.getChildAt(i) as MaterialRadioButton
-                radioButton.setTextColor(resources.getColor(R.color.white, null))
-            }
-            val selectedRadioButton = group.findViewById<MaterialRadioButton>(checkedId)
-            selectedRadioButton.setTextColor(resources.getColor(R.color.selected_radio_button_color, null))
-            statusTask = when (checkedId) {
-                R.id.rbTodo -> 0
-                R.id.rbDoing -> 1
-                else -> 2
-            }
-        }
-    }
-
-    private fun validateTask() {
-        newTask = false
-        statusTask = task.status
-        binding.textToolbar.text = getString(R.string.text_editing_task_form_task_fragment)
-
-        binding.editDescription.setText(task.description)
-        setStatus()
-    }
-
-    private fun setStatus() {
-        binding.radioGroup.check(
-            when (task.status) {
-                0 -> R.id.rbTodo
-                1 -> R.id.rbDoing
-                else -> R.id.rbDone
-            }
-        )
     }
 
     private fun validateData() {
@@ -86,9 +56,12 @@ class FormTaskFragment : Fragment() {
             hideKeyboard()
             binding.progressBar.isVisible = true
 
-            if (newTask) task = Task()
+            if (newTask) {
+                task = Task()
+                task.id = FirebaseHelper.getDatabase().child("task").push().key ?: ""
+            }
+
             task.description = description
-            task.status = statusTask
 
             saveTask()
         } else {
@@ -122,15 +95,23 @@ class FormTaskFragment : Fragment() {
                     }
                 } else {
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), R.string.text_erro_save_task_form_task_fragment, Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.text_erro_save_task_form_task_fragment,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
-                Toast.makeText(requireContext(), R.string.text_erro_save_task_form_task_fragment, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.text_erro_save_task_form_task_fragment,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
+
+
 
     private fun hideKeyboard() {
         // Implement hide keyboard functionality

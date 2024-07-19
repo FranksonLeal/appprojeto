@@ -99,6 +99,7 @@ class TodoFragment : Fragment() {
                 deleteTask(task)
             }
             TaskAdapter.SELECT_EDIT -> {
+                // Passando a tarefa para o fragmento de formulário para edição
                 val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
@@ -108,6 +109,7 @@ class TodoFragment : Fragment() {
             }
         }
     }
+
 
     private fun updateTask(task: Task) {
         FirebaseHelper

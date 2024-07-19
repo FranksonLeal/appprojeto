@@ -54,7 +54,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
-        app:tint="@color/color_defalt"
+        app:tint="#FFA500"
         android:src="@drawable/ic_add"
         android:contentDescription="a"
         app:layout_constraintBottom_toBottomOf="parent"

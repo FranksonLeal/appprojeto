@@ -41,38 +41,7 @@ class TaskAdapter(
         holder.binding.btnEdit.setOnClickListener { taskSelected(task, SELECT_EDIT) }
         holder.binding.btnDetails.setOnClickListener { taskSelected(task, SELECT_DETAILS) }
 
-        when (task.status) {
-            0 -> {
-                holder.binding.ibBack.isVisible = false
 
-                holder.binding.ibNext.setColorFilter(
-                    ContextCompat.getColor(context, R.color.color_doing)
-                )
-
-                holder.binding.ibNext.setOnClickListener { taskSelected(task, SELECT_NEXT) }
-            }
-            1 -> {
-                holder.binding.ibBack.setColorFilter(
-                    ContextCompat.getColor(context, R.color.color_todo)
-                )
-
-                holder.binding.ibNext.setColorFilter(
-                    ContextCompat.getColor(context, R.color.color_done)
-                )
-
-                holder.binding.ibBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
-                holder.binding.ibNext.setOnClickListener { taskSelected(task, SELECT_NEXT) }
-            }
-            else -> {
-                holder.binding.ibNext.isVisible = false
-
-                holder.binding.ibBack.setColorFilter(
-                    ContextCompat.getColor(context, R.color.color_doing)
-                )
-
-                holder.binding.ibBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
-            }
-        }
     }
 
     override fun getItemCount() = taskList.size

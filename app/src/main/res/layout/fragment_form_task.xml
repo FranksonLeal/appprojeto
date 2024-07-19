@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_defalt"
+    android:background="#FFA500"
     tools:context=".ui.FormTaskFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_defalt"
+            android:background="#FFA500"
             app:navigationIcon="@drawable/ic_back">
 
             <TextView
@@ -62,7 +62,7 @@
             <EditText
                 android:id="@+id/editDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
                 android:hint="Descreva sua tarefa"
@@ -83,63 +83,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editDescription" />
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView2">
-
-                <RadioButton
-                    android:id="@+id/rbTodo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="A fazer"
-                    android:textColor="@color/white" />
-
-                <RadioButton
-                    android:id="@+id/rbDoing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="Fazendo"
-                    android:textColor="@color/white" />
-
-                <RadioButton
-                    android:id="@+id/rbDone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="Feita"
-                    android:textColor="@color/white" />
-
-            </RadioGroup>
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="72dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/text_btn_save_task_form_task_fragment"
                 android:textAllCaps="false"
                 android:textColor="@color/color_defalt"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:indeterminateTint="@color/white"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"

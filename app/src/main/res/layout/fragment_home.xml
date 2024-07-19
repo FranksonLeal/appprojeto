@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_defalt"
+    android:background="#FFA500"
     tools:context=".ui.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +18,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_defalt"
+            android:background="#FFA500"
             android:contentDescription="a"
             app:tabIndicatorColor="@color/white"
             app:tabTextAppearance="@style/CustomTabLayout"

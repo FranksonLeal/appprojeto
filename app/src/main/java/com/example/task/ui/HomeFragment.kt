@@ -49,9 +49,8 @@ class HomeFragment : Fragment() {
     private fun configTabLayout() {
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
-        adapter.addFragment(TodoFragment(), "A fazer")
-        adapter.addFragment(DoingFragment(), "Fazendo")
-        adapter.addFragment(DoneFragment(), "Feitas")
+        adapter.addFragment(TodoFragment(), "Minhas notas")
+
 
         binding.viewPager.offscreenPageLimit = adapter.itemCount
 

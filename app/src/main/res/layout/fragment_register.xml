@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_defalt"
+    android:background="#FFA500"
     android:fillViewport="true"
     tools:context=".ui.auth.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/color_defalt"
+        android:background="#FFA500"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
-            android:background="@color/color_defalt"
+            android:background="#FFA500"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +25,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_defalt">
+                android:background="#FFA500">
 
 
                 <TextView
@@ -44,7 +44,7 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="@color/color_defalt"
+            android:background="#FFA500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
@@ -95,7 +95,7 @@
                 android:background="@drawable/bg_button"
                 android:text="Criar Conta"
                 android:textAllCaps="false"
-                android:textColor="@color/color_defalt"
+                android:textColor="#FFA500"
                 app:backgroundTint="@null" />
 
             <ProgressBar
