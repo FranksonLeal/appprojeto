@@ -23,6 +23,10 @@
             app:tabIndicatorColor="@color/white"
             app:tabTextAppearance="@style/CustomTabLayout"
             app:tabTextColor="@color/white" />
+
+
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
