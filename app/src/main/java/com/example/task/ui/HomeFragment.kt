@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
 import com.example.task.databinding.FragmentHomeBinding
@@ -32,6 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         configTabLayout()
         initClicks()
     }
@@ -40,10 +43,13 @@ class HomeFragment : Fragment() {
     private fun initClicks() {
         binding.ibLogout.setOnClickListener {
             showConfirmationDialog(
-                title = "Confirmar logout",
-                message = "Você tem certeza que deseja sair?",
+                title = "Confirmar saída",
+                message = "Você tem certeza que deseja sair? Você precisará fazer login novamente.",
                 onConfirm = { logoutapp() }
             )
+        }
+        binding.ibuser.setOnClickListener {
+            showUserInfoDialog()
         }
     }
 
@@ -80,6 +86,29 @@ class HomeFragment : Fragment() {
             dialog.dismiss()
         }
         builder.show()
+    }
+
+    private fun showUserInfoDialog() {
+        val user = auth.currentUser
+        user?.let {
+            val email = user.email ?: "Email não disponível"
+            val initial = user.displayName?.firstOrNull()?.toString() ?: user.email?.firstOrNull()?.toString() ?: "?"
+
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_user_info, null)
+            val emailTextView = dialogView.findViewById<TextView>(R.id.tvUserEmail)
+            val initialTextView = dialogView.findViewById<TextView>(R.id.tvUserInitial)
+
+            emailTextView.text = email
+            initialTextView.text = initial
+
+            AlertDialog.Builder(requireContext())
+                .setTitle("Informações do Usuário")
+                .setView(dialogView)
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
     }
 
 

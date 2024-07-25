@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
@@ -32,8 +33,13 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+
         setupToolbar()
         initListeners()
+
+
 
         // Verifica se estamos editando uma tarefa existente
         val args = FormTaskFragmentArgs.fromBundle(requireArguments())
@@ -164,5 +170,7 @@ class FormTaskFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
 }
