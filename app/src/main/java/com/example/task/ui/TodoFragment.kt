@@ -1,5 +1,6 @@
 package com.example.task.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -98,14 +99,18 @@ class TodoFragment : Fragment() {
     private fun optionSelect(task: Task, select: Int) {
         when (select) {
             TaskAdapter.SELECT_REMOVE -> {
-                deleteTask(task)
+                showDeleteConfirmationDialog(task)
             }
             TaskAdapter.SELECT_EDIT -> {
                 val action = HomeFragmentDirections
                     .actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
-
+            TaskAdapter.SELECT_DETAILS -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToTaskDetailsFragment(task)
+                findNavController().navigate(action)
+            }
             TaskAdapter.SELECT_NEXT -> {
                 task.status = 1
                 updateTask(task)
@@ -113,6 +118,18 @@ class TodoFragment : Fragment() {
         }
     }
 
+    private fun showDeleteConfirmationDialog(task: Task) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Confirmar exclusão")
+        builder.setMessage("Você tem certeza que deseja excluir esta tarefa?")
+        builder.setPositiveButton("Sim") { dialog, which ->
+            deleteTask(task)
+        }
+        builder.setNegativeButton("Não") { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
 
     private fun updateTask(task: Task) {
         FirebaseHelper

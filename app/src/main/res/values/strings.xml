@@ -18,9 +18,6 @@
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
 
 
-
-
-
     <!--    Form Task Fragment-->
     <string name="text_title_form_task_fragment">Nova tarefa</string>
     <string name="text_description_form_task_fragment">Descrição</string>

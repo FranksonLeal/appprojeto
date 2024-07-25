@@ -1,5 +1,6 @@
 package com.example.task.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,11 +36,17 @@ class HomeFragment : Fragment() {
         initClicks()
     }
 
+
     private fun initClicks() {
         binding.ibLogout.setOnClickListener {
-            logoutapp()
+            showConfirmationDialog(
+                title = "Confirmar logout",
+                message = "Você tem certeza que deseja sair?",
+                onConfirm = { logoutapp() }
+            )
         }
     }
+
 
     private fun logoutapp() {
         auth.signOut()
@@ -49,7 +56,7 @@ class HomeFragment : Fragment() {
     private fun configTabLayout() {
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
-        adapter.addFragment(TodoFragment(), "Minhas notas")
+        adapter.addFragment(TodoFragment(), "Minhas anotações")
 
 
         binding.viewPager.offscreenPageLimit = adapter.itemCount
@@ -60,6 +67,21 @@ class HomeFragment : Fragment() {
             tab.text = adapter.getTitle(position)
         }.attach()
     }
+
+
+    private fun showConfirmationDialog(title: String, message: String, onConfirm: () -> Unit) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Sim") { dialog, which ->
+            onConfirm()
+        }
+        builder.setNegativeButton("Não") { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

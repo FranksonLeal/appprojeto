@@ -39,7 +39,10 @@ class TaskAdapter(
 
         holder.binding.btnDelete.setOnClickListener { taskSelected(task, SELECT_REMOVE) }
         holder.binding.btnEdit.setOnClickListener { taskSelected(task, SELECT_EDIT) }
+
+        // TaskAdapter.kt
         holder.binding.btnDetails.setOnClickListener { taskSelected(task, SELECT_DETAILS) }
+
 
 
     }

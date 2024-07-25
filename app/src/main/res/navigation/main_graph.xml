@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_homeFragment_to_formTaskFragment"
             app:destination="@id/formTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_taskDetailsFragment"
+            app:destination="@id/taskDetailsFragment" />
     </fragment>
     <navigation
         android:id="@+id/authetication"
@@ -74,4 +77,14 @@
             app:argType="com.example.task.model.Task"
             app:nullable="true" />
     </fragment>
+    <!-- res/navigation/nav_graph.xml -->
+    <fragment
+        android:id="@+id/taskDetailsFragment"
+        android:name="com.example.task.ui.TaskDetailsFragment"
+        android:label="Task Details">
+        <argument
+            android:name="task"
+            app:argType="com.example.task.model.Task" />
+    </fragment>
+
 </navigation>
