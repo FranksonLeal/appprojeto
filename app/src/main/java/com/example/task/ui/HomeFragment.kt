@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,18 +103,12 @@ class HomeFragment : Fragment() {
             initialTextView.text = initial
 
             AlertDialog.Builder(requireContext())
-                .setTitle("Informações do Usuário")
+                .setTitle("Meu Perfil")
                 .setView(dialogView)
                 .setPositiveButton("OK") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
         }
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
