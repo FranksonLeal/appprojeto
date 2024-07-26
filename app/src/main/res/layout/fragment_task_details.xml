@@ -8,6 +8,17 @@
         android:background="@color/white"
         android:padding="16dp">
 
+        <!-- TextView para a descrição no topo da página -->
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descrição da Nota"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:gravity="center"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
