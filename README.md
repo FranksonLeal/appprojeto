@@ -1,7 +1,7 @@
 # APP QuickNote
 
 <p align="left">
-  <img src="app/src/main/res/mipmap-hdpi/ic_launcher.webp" alt="Logo do QuickNote" width="200">
+  <img src="app/src/main/res/mipmap-hdpi/ic_launcher.webp" alt="Logo do QuickNote" width="100">
 </p>
 
 QuickNote é um aplicativo de bloco de notas rápido e fácil de usar, projetado para ajudar você a capturar e organizar suas ideias em qualquer lugar e a qualquer momento.
