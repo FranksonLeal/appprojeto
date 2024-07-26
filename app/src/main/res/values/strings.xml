@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task</string>
+    <string name="app_name">QuickNote</string>
     <string name="hello_blank_fragment">Hello Fragment!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="text_email">E-mail</string>
