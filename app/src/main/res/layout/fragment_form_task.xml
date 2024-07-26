@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/text_title_form_task_fragment"
+                android:text="Nova anotação"
                 android:textColor="@color/white" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -102,16 +102,7 @@
                 tools:visibility="visible" />
 
             <!-- RecyclerView for displaying tasks -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/progressBar"
-                app:layout_constraintVertical_bias="0.505" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,15 +8,21 @@
         android:background="@color/white"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvTaskDetails"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:padding="8dp"
-            android:text="Task details will appear here" />
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvTaskDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="8dp"
+                android:text="Task details will appear here" />
+
+        </ScrollView>
 
         <Button
             android:id="@+id/btnClose"
@@ -24,8 +30,6 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#FFA500"
             android:text="Sair"
-
-
             android:textColor="@color/white" />
 
     </LinearLayout>
