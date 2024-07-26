@@ -1,4 +1,4 @@
-# APP QuickNote
+# Minhas Notas
 
 <p align="left">
   <img src="app/src/main/res/mipmap-hdpi/ic_launcher.webp" alt="Logo do QuickNote" width="200">
