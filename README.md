@@ -4,7 +4,7 @@
   <img src="app/src/main/res/mipmap-hdpi/ic_launcher.webp" alt="Logo do QuickNote" width="200">
 </p>
 
-QuickNote é um aplicativo de bloco de notas rápido e fácil de usar, projetado para ajudar você a capturar e organizar suas ideias em qualquer lugar e a qualquer momento.
+Minhas Notas é um aplicativo de bloco de notas rápido e fácil de usar, projetado para ajudar você a capturar e organizar suas ideias em qualquer lugar e a qualquer momento.
 
 ## Funcionalidades
 
@@ -21,13 +21,13 @@ Siga os passos abaixo para instalar e executar o QuickNote em seu ambiente local
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/QuickNote.git
+    git clone https://github.com/seu-usuario/appprojeto.git
     ```
 
 2. Navegue até o diretório do projeto:
 
     ```bash
-    cd QuickNote
+    cd appprojeto
     ```
 
 3. Instale as dependências necessárias:
@@ -44,7 +44,7 @@ Siga os passos abaixo para instalar e executar o QuickNote em seu ambiente local
 
 ## Uso
 
-1. Abra o aplicativo QuickNote.
+1. Abra o aplicativo Minhas Notas.
 2. Clique no botão "Mais + " para criar uma nova anotação.
 3. Digite seu texto na Descrição e clique em "Salvar".
 4. Use a barra de rolagem para encontrar anotações específicas.
