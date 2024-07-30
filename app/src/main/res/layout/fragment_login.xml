@@ -52,6 +52,7 @@
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
                 android:hint="********"
+                android:textColor="@color/black"
                 android:padding="18dp"
                 android:textSize="14sp"
                 android:inputType="textPassword"/>

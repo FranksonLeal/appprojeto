@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
         auth = Firebase.auth
         initClicks()
 
+        // Verifica alternância de Visibilidade
         initPasswordVisibilityToggle()
     }
 
