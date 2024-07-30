@@ -1,6 +1,7 @@
 package com.example.task.ui.auth
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,9 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
 
+    // Visualizar senha
+    private var isPasswordVisible = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +37,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         initClicks()
+
+        initPasswordVisibilityToggle()
     }
 
     private fun initClicks(){
@@ -77,6 +83,22 @@ class LoginFragment : Fragment() {
                     binding.progressbar.isVisible = false
                 }
             }
+    }
+
+    // Função para visualizar senha
+    private fun initPasswordVisibilityToggle() {
+        binding.ivShowPassword.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                binding.edtPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.ivShowPassword.setImageResource(R.drawable.ic_visibility_on)
+            } else {
+                binding.edtPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.ivShowPassword.setImageResource(R.drawable.ic_visibility_off)
+            }
+            // Mova o cursor para o final da entrada
+            binding.edtPassword.setSelection(binding.edtPassword.text.length)
+        }
     }
 
     override fun onDestroyView() {
