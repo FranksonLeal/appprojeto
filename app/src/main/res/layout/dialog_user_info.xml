@@ -9,6 +9,15 @@
     android:padding="16dp">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Bem Vindo"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="16dp"
+        android:textColor="@android:color/white"/>
+
+    <TextView
         android:id="@+id/tvUserInitial"
         android:layout_width="56dp"
         android:layout_height="56dp"

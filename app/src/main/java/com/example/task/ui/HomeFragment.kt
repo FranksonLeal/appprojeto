@@ -93,7 +93,9 @@ class HomeFragment : Fragment() {
         val user = auth.currentUser
         user?.let {
             val email = user.email ?: "Email não disponível"
-            val initial = user.displayName?.firstOrNull()?.toString() ?: user.email?.firstOrNull()?.toString() ?: "?"
+            val initial =
+                user.displayName?.firstOrNull()?.toString() ?: user.email?.firstOrNull()?.toString()
+                ?: "?"
 
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_user_info, null)
             val emailTextView = dialogView.findViewById<TextView>(R.id.tvUserEmail)
@@ -102,10 +104,18 @@ class HomeFragment : Fragment() {
             emailTextView.text = email
             initialTextView.text = initial
 
+//            AlertDialog.Builder(requireContext())
+//                .setTitle("Bem Vindo")
+//                .setView(dialogView)
+//                .setPositiveButton("Voltar") { dialog, _ ->
+//                    dialog.dismiss()
+//                }
+//                .show()
+
             AlertDialog.Builder(requireContext())
-                .setTitle("Meu Perfil")
+
                 .setView(dialogView)
-                .setPositiveButton("OK") { dialog, _ ->
+                .setPositiveButton("Voltar") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
