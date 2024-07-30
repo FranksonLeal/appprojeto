@@ -5,8 +5,8 @@
         <item name="colorPrimary">#FFA500</item>
         <item name="colorPrimaryVariant">#FFA500</item>
         <item name="android:windowBackground">#FFA500</item>
-        <item name="android:windowNoTitle">true</item> <!-- Esconder o título da janela -->
-        <item name="android:windowActionBar">false</item> <!-- Desativar ActionBar -->
+
+
     </style>
 
     <style name="Theme.Task" parent="Base.Theme.Task" />
